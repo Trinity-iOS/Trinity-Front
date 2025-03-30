@@ -1,0 +1,29 @@
+disabled_rules:
+  - line_length           # 길이 제한은 때때로 필요할 수 있어서 비활성화
+  - trailing_whitespace   # 불필요한 줄바꿈 체크 비활성화
+  - identifier_name       # i, j, x 같은 짧은 변수 허용
+  - todo                  # TODO: 주석 허용
+  - function_body_length  # 함수 길이 제한 일단 비활성화 (리팩토링 단계에서 체크해도 충분)
+  - type_name
+
+opt_in_rules:
+  - unused_import
+  - closure_spacing
+  - explicit_init         # 명시적 이니셜라이저 사용 권장 (예: String("abc"))
+  - fatal_error_message   # fatalError에 설명 있는지 확인
+  - force_unwrapping      # ! 사용 감지
+  - force_cast            # as! 사용 감지
+  - attributes            # @objc 등 속성 위치 스타일 검사
+  - discouraged_optional_boolean # Bool?은 피하자 (모호한 의미)
+
+included:
+  - Trinity_iOS
+  - Trinity_iOSTests
+
+excluded:              # 만약 Cocoapods, Fastlane 등 사용한다면 예외 처리
+  - Carthage
+  - Pods
+  - fastlane
+  - Scripts
+
+reporter: "xcode"      # 오류 메시지를 Xcode 형식으로 출력
