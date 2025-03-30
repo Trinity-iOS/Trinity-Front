@@ -1,0 +1,3 @@
+app_identifier ENV["APP_IDENTIFIER"]       # ex: Trinity.Trinity-iOS.prod
+apple_id ENV["APPLE_ID"]                   # ex: what.if.team.app@gmail.com
+team_id ENV["TEAM_ID"]                     # Developer Portal Team ID

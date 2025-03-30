@@ -1,0 +1,43 @@
+default_platform(:ios)
+
+platform :ios do
+  lane :beta do
+    app_store_connect_api_key(
+      key_id: ENV["KEY_ID"],
+      issuer_id: ENV["ISSUER_ID"],
+      key_filepath: ENV["KEY_FILE_PATH"]
+    )
+
+    match(
+      type: "appstore",
+      app_identifier: [ENV["APP_IDENTIFIER"]],
+      username: ENV["APPLE_ID"],
+      team_id: ENV["TEAM_ID"],
+      git_url: ENV["GIT_URL"],
+      storage_mode: ENV["STORAGE_MODE"]
+    )
+
+    latest_build_number = latest_testflight_build_number(
+      version: ENV["APP_VERSION"]
+    )
+
+    increment_build_number(
+      build_number: latest_build_number + 1,
+      xcodeproj: ENV["XCODEPROJ"]
+    )
+
+    build_app(
+      project: ENV["XCODEPROJ"],
+      scheme: ENV["SCHEME"],
+      clean: true,
+      export_method: "app-store",
+      include_bitcode: false
+    )
+
+    upload_to_testflight(
+      username: ENV["APPLE_ID"],
+      app_identifier: ENV["APP_IDENTIFIER"],
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
