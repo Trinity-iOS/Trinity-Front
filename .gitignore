@@ -16,3 +16,6 @@ Packages/
 
 # Others
 .DS_Store
+
+.env
+*.p8
