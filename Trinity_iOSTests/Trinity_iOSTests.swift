@@ -6,7 +6,7 @@
 //
 
 import Testing
-@testable import Trinity_iOS
+import Trinity_iOS
 
 struct Trinity_iOSTests {
 
